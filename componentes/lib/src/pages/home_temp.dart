@@ -40,7 +40,7 @@ class HomePageTemp extends StatelessWidget {
 
   // usando el metodo map que viene en todas las listas
 
-  List<Widget> _crearItemsCorto(){
+ /*  List<Widget> _crearItemsCorto(){
 
     return  opciones.map((item) {
 
@@ -61,7 +61,7 @@ class HomePageTemp extends StatelessWidget {
     ).toList();
 
   
-  }
+  } */
 
 
 }
