@@ -4,7 +4,7 @@ import 'package:componentes/src/utils/icons_string_utils.dart';
 
 import 'menu_provider.dart';
 
-import 'alert_page.dart';
+
 
 
 class HomePage  extends StatelessWidget {
@@ -19,6 +19,7 @@ class HomePage  extends StatelessWidget {
       body: _lista(),
     );
   }
+
 
   Widget _lista() {
 
@@ -36,6 +37,7 @@ class HomePage  extends StatelessWidget {
     );
   }
 
+
   List<Widget> _listaItems(List<dynamic>? data, BuildContext context) {
      
     final List<Widget> opciones = [];
@@ -46,16 +48,22 @@ class HomePage  extends StatelessWidget {
         leading: getIcon(opt['icon']), // se agrego funcion para obtener un icon   
         trailing: Icon(Icons.chevron_right, color: Colors.amber),
         onTap: () {
-            // creando la ruta para ir a una paginas, tambien deben ser importadas
-          final route = MaterialPageRoute(
-            builder: (context) {
-              return AlertPage();
-            } 
+
+///                      para acceder a una coleccion de rutas dentro de un mapa
+///                      definido en el main
+          Navigator.pushNamed(context, opt['ruta']); 
+
+
+        /*// creando la ruta para ir a una paginas, tambien deben ser importadas
+            final route = MaterialPageRoute(
+              builder: (context) {
+                return AlertPage();
+              } 
           );
 
-          Navigator.push(context, route); /// objeto "Navigator" y metodo ".push"
-                                  /// para hacer la navegacion entre las opciones
-        },
+          Navigator.push(context, route); ///objeto "Navigator" y metodo ".push"
+                                /// para hacer la navegacion entre las opciones */
+        },  
       );
     
       opciones..add(widgetTemp)
