@@ -43,7 +43,7 @@ class CardPage extends StatelessWidget {
     
     return Card(
       elevation: 15, // Da efecto de sombra a la card
-              // para darle forma redondeada a las esquinas
+              // Para darle forma redondeada a las esquinas
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Column(
         children: <Widget>[
@@ -88,10 +88,10 @@ class CardPage extends StatelessWidget {
         // Widget usado para cargar una imagen y una animacion de espera
           FadeInImage(
             placeholder: AssetImage('assets/jar-loading.gif'), 
-            fadeInDuration: Duration(milliseconds: 400),
+            fadeInDuration: Duration(milliseconds: 300),
             image: NetworkImage ('https://s.walldump.com/wallpapers/walldump-D6DLZQv0d.jpg'),
             height: 250,
-            fit: BoxFit.cover,
+            fit: BoxFit.cover,  
           ),
          /*  Image( // para cargar una imagen de la web
             image: NetworkImage('https://s.walldump.com/wallpapers/walldump-D6DLZQv0d.jpg'),
