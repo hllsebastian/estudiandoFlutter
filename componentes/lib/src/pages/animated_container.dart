@@ -35,14 +35,16 @@ class _AnimatedContainerPageState extends State<AnimatedContainerPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.double_arrow),
         backgroundColor: Colors.deepPurpleAccent,
-        onPressed: _formaChange,
+        onPressed: _formaChange, // en este metodo se dio forma al "animated"
       ),
     );
   }
 
   void _formaChange() {
 
-    final random = Random();
+    final random = Random(); /*se importa el paquete "dart:math" para que haga
+    una seleccion aleatoria de las propiedades del "AnimatedContainer" con el 
+    metodo ".nextInt()" */
 
     setState(() {
       _width  = random.nextInt(300).toDouble();
