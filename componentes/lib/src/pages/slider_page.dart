@@ -8,7 +8,9 @@ class SliderPage extends StatefulWidget {
 }
 
 class _SliderPage extends State<SliderPage> {
+
   double _valorSlider = 10;
+  dynamic   _bloquearCheck = false; 
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,8 @@ class _SliderPage extends State<SliderPage> {
         padding: EdgeInsets.only(top: 50),
         child: Column(
           children: <Widget>[
+            _crearSwitch(),
+            _crearCheckbox(),
             _crearSlider(),
             Expanded( // Se envolvio en el Widget "Expanded" para usar mejor
                       // el espacio
@@ -39,13 +43,52 @@ class _SliderPage extends State<SliderPage> {
       value: _valorSlider,  //Desde esta parte se define el movimiento
       min: 10,  // del slider en pantalla
       max: 400,
-      onChanged: (valor) { // Esta parte hace que se redibuje el
-        setState(() {    // estado y se muestre el cambio en pantalla
-          _valorSlider = valor;
+      onChanged: (_bloquearCheck) ? null : 
+        (valor) { // Esta parte hace que se redibuje el
+          setState(() {    // estado y se muestre el cambio en pantalla
+            _valorSlider = valor;
         });
       },
     );
   }
+
+
+  Widget _crearCheckbox() { // Cuando esta activo, bloquea la accion que uno
+                // indique, para esta caso, cambiar el tamaño de la imagen
+    
+  /*   return Checkbox(
+      value: _bloquearCheck, 
+      onChanged: (valor) {
+        setState(() {
+          _bloquearCheck = valor;
+        });
+      },
+    );  */
+
+    return CheckboxListTile( // Otra forma de usar CheckBox
+      title: Text('Bloquear Slider'),
+      value: _bloquearCheck, 
+      onChanged: (valor) {
+        setState(() {
+          _bloquearCheck = valor;
+        });
+      }
+    );
+
+  }
+
+ _crearSwitch() {
+    return SwitchListTile( // Otra forma de personalizar un check
+      title: Text('Bloquear Slider'),
+      value: _bloquearCheck, 
+      onChanged: (valor) {
+        setState(() {
+          _bloquearCheck = valor;
+        });
+      }
+    );
+  }
+
 
   Widget _crearImagen() { //Para que al mover el slider cambie el tamaño 
 
@@ -55,4 +98,9 @@ class _SliderPage extends State<SliderPage> {
       fit: BoxFit.contain, //para que no se desencaje la imagen
     );
   }
+
+ 
+
+  
+
 }
