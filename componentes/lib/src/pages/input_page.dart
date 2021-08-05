@@ -15,7 +15,7 @@ class _InputPage extends State<InputPage> {
   // esta variable se define para guardar la fecha elegida en el campo
   TextEditingController _inputDateController = TextEditingController();
 
-  String _opcionSeleccionada = 'volar';
+  String _opcionSeleccionada = 'volar'; // opcion que aparecere por defecto
   List<String> _poderes = [
     'volar',
     'rayos laser',
@@ -174,7 +174,6 @@ class _InputPage extends State<InputPage> {
 
   _crearDropdown() {
     // Para crear un listado
-
     return Row ( 
       children: [
         Icon(Icons.select_all),
@@ -191,8 +190,6 @@ class _InputPage extends State<InputPage> {
               ),
         ),
       ],
-
-
     ); 
 
     

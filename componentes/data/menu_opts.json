@@ -24,7 +24,12 @@
         {
             "ruta" : "inputs",
             "icon" : "input",
-            "texto": "inputs"
+            "texto": "Inputs"
+        },   
+        {
+            "ruta" : "slider",
+            "icon" : "tune",
+            "texto": "Sliders & CheckBox"
         }   
     ]
 }
