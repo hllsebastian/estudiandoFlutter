@@ -14,7 +14,8 @@ class CardSwiper extends StatelessWidget {
     return Container(
       width: double.infinity, // Para que se anche lo maximo posible en la pantalla
       height: size.height * 0.5,
-      child: Swiper( // Widget que usa paquete externo
+      child: Swiper( // Widget que usa paquete externo para deslizar ventanas de 
+                  // forma horizontal
         itemCount: 10,
         layout: SwiperLayout.STACK,
         itemWidth: size.width * 0.6,      
@@ -22,10 +23,10 @@ class CardSwiper extends StatelessWidget {
         itemBuilder: ( _, index){ // "_" se refiere al context
           
           return GestureDetector( //Al dart tap en un recuadro cargar nueva page
-            onTap: () => Navigator.pushNamed(context, 'details', arguments: 'movie-instance'),
-            child: ClipRRect(
+            onTap: () => Navigator.pushNamed( _, 'details', arguments: 'movie-instance'),
+            child: ClipRRect( // Widget para recortar los bordes puntiaguado
               borderRadius: BorderRadius.circular(30),
-              child: FadeInImage(
+              child: FadeInImage(//para mostrar una imagen mientras carga el contenido
               placeholder: AssetImage('assets/no-image.jpg'),
               image      : NetworkImage('http://via.placeholder.com/300x400'), 
               fit: BoxFit.cover,
