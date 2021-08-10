@@ -27,14 +27,21 @@ class HomeScreen extends StatelessWidget {
       ),
 
       body: SingleChildScrollView( // permite hacer scroll
-        child: Column(
+        child: Column( 
           children: [
       
             // TARJETAS PRINCIPALES
            CardSwiper(movies: moviesProvider.onDisplayMovies),// se importa la ruta del archivo "card_swiper"
       
            //SLIDER de peliculas
-           MovieSlider(),          
+           MovieSlider(
+             movies: moviesProvider.popularMovies,
+             title : 'Populares!!', 
+             onNextPage: () => moviesProvider.getPopularMovies(),
+           ),     
+           //poner las peliculas populares
+           //title que diga populares y que sea opcional
+           //     
           
       
       
