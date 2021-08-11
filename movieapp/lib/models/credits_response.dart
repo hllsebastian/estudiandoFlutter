@@ -18,7 +18,7 @@ class CreditsResponse {
     factory CreditsResponse.fromJson(String str) => CreditsResponse.fromMap(json.decode(str));
 
     factory CreditsResponse.fromMap(Map<String, dynamic> json) => CreditsResponse(
-        id: json["id"],
+        id: json['id'],
         cast: List<Cast>.from(json["cast"].map((x) => Cast.fromMap(x))),
         crew: List<Cast>.from(json["crew"].map((x) => Cast.fromMap(x))),
     );
@@ -57,9 +57,14 @@ class Cast {
     String? department;
     String? job;
 
-     get fullProfilePath=> (profilePath != null) ?
-      ( 'https://image.tmdb.org/t/p/w500/${this.profilePath}') :
-       'https://i.stack.imgur.com/GNhxO.png';
+     get fullProfilePath {
+       
+       if (this.profilePath != null)
+        return 'https://image.tmdb.org/t/p/w500/${this.profilePath}';
+
+    return 'https://i.stack.imgur.com/GNhxO.png';
+      
+    }
 
 
 
