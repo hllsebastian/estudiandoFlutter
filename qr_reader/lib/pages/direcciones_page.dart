@@ -6,7 +6,7 @@ class DireccionesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Mapas historial page'),
+      child: Text('Direccion Page'),
     );
   }
 }

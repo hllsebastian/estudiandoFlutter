@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
+import 'package:qr_reader/providers/ui_provides.dart';
 
 import 'package:qr_reader/widgets/custom_navigatorBar.dart';
 import 'package:qr_reader/pages/mapas_page.dart';
@@ -36,13 +38,15 @@ class HomePage extends StatelessWidget {
 
 class _HomePageBody extends StatelessWidget {
 
-  
-
   @override
   Widget build(BuildContext context) {
-    
+
+    //Obteniendo el "selectedMenuOpt", que redibujara la app
+    //debe inidcarse que es de tipo "Uiprovider" 
+    final uiProvider = Provider.of<UiProvider>(context);
+
     // Condicion que se usara para mostrar la pagina
-    final currentIndex = 0;
+    final currentIndex = uiProvider.selectedMenuOpt;
 
     switch(currentIndex) {
 
