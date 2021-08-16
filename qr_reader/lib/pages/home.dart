@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
+import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/ui_provides.dart';
 
 import 'package:qr_reader/widgets/custom_navigatorBar.dart';
@@ -40,6 +41,11 @@ class _HomePageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    // TODO: leer temporalmente la ruta de la BD
+
+    DBProvider.db.database;
 
     //Obteniendo el "selectedMenuOpt", que redibujara la app
     //debe inidcarse que es de tipo "Uiprovider" 
