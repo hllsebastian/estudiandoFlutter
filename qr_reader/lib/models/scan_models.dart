@@ -13,10 +13,10 @@ class ScanModel {
         this.id,
         this.tipo,
         required this.valor, // cada que se crea una instancia del ScanModel, 
-                            // tiene que venir este valor
+                            // tiene que venir  este valor
      }) {
 
-    if (this.tipo!.contains('http')){
+    if (this.valor.contains('http')){
       this.tipo = 'htttp';
     } else {
       this.tipo = 'geo';

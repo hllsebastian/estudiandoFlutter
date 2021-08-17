@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/models/scan_models.dart';
 import 'package:qr_reader/pages/direcciones_page.dart';
 import 'package:qr_reader/providers/db_provider.dart';
 import 'package:qr_reader/providers/ui_provides.dart';
@@ -43,16 +44,21 @@ class _HomePageBody extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-    // TODO: leer temporalmente la ruta de la BD
-
-    DBProvider.db.database;
-
     //Obteniendo el "selectedMenuOpt", que redibujara la app
     //debe inidcarse que es de tipo "Uiprovider" 
     final uiProvider = Provider.of<UiProvider>(context);
 
     // Condicion que se usara para mostrar la pagina
     final currentIndex = uiProvider.selectedMenuOpt;
+
+     // TODO: leer temporalmente la ruta de la BD
+
+    //final tempScan =  ScanModel(valor: 'http://google.com');
+    //DBProvider.db.nuevoScan(tempScan); // para llamar el ingreso de registro
+
+    DBProvider.db.getTodosLosScans(16).then((scan) => print (scan));
+    
+
 
     switch(currentIndex) {
 
@@ -65,6 +71,9 @@ class _HomePageBody extends StatelessWidget {
       default: 
         return MapasPage();
     }
-
   }
+
+  
+
+
 }
