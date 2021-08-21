@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:google_maps_flutter/google_maps_flutter.dart' show LatLng;
+
 ScanModel scanModelFromJson(String str) => ScanModel.fromJson(json.decode(str));
 
 String scanModelToJson(ScanModel data) => json.encode(data.toJson());
@@ -27,19 +29,29 @@ class ScanModel {
     String? tipo;
     String valor;
 
+    LatLng getLatLng() {
+
+      //listado para que primero se la latitud y luego la longitud
+      final latLng = this.valor.substring(4).split(',');
+      final lat = double.parse( latLng[0] );
+      final lng = double.parse( latLng[1] );
+
+      return LatLng( lat, lng );
+    }
+
     //Cuando recibe un Json va a crear una nueva instancia de la clase 
     //ScanModel
     factory ScanModel.fromJson(Map<String, dynamic> json) => ScanModel(
-        id: json["id"],
-        tipo: json["tipo"],
+        id   : json["id"],
+        tipo : json["tipo"],
         valor: json["valor"],
     );
 
     //Tomara la instancia de la clase ScanModel y lo pasara a un nuevo 
     //mapa, con el cual se trabajar en SQFLite
     Map<String, dynamic> toJson() => {
-        "id": id,
-        "tipo": tipo,
+        "id"   : id,
+        "tipo" : tipo,
         "valor": valor,
     };
 }

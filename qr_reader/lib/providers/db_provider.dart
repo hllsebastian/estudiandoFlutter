@@ -41,14 +41,14 @@ class DBProvider {
     final path = join(documentsDirectory.path, 'ScansDB.db');
     print(path);
 
-    // 2. Creancion de la BD
+    // 2. Creancion de la tabla
     // La version debe cambiarse ascendentemente cada vez que se  haga
     // un cambio estructural en la BD, si no no ejecutara la rutina de
     // creacion de las tablas
-    return await openDatabase(path,
+    return await openDatabase(
+        path,
         version: 1,
-        onOpen: (db) {}, // Con la BD abierta y se quiere ejecutar algo
-
+        onOpen : (db) {}, // Con la BD abierta y se quiere ejecutar algo
         // para crear la BD
         onCreate: (Database db, int version) async {
       await db.execute(''' 
@@ -61,7 +61,7 @@ class DBProvider {
     });
   }
 
-  /*  nuevoScanRaw(ScanModel nuevoScan) async {
+   Future<int> nuevoScanRaw(ScanModel nuevoScan) async {
     //Forma larga de ingresar un registro
 
     final id = nuevoScan.id;
@@ -80,29 +80,29 @@ class DBProvider {
 
     return resp;
   }
- */
 
-  // forma corta de ingresar datos
-  nuevoScan(ScanModel nuevoScan) async {
-    final db = await database;
+
+      // forma corta de ingresar datos
+  /* Future<int> nuevoScan(ScanModel nuevoScan) async {
+    final db  = await database;
     final res = await db.insert('Scans', nuevoScan.toJson());
-    print(res);
+    print(res); 
 
     // "res" es el id del ultimo registro insertado
     return res;
-  }
+  } */
 
   // Para leer un valor
   Future getScanById(int id) async {
-    final db = await database;
+    final db  = await database;
     final res = await db.query('Scans', where: 'id = ?', whereArgs: [id]);
 
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
   // Para leer todos los valores
-  Future getTodosLosScans(int id) async {
-    final db = await database;
+  Future<List<ScanModel>> getTodosLosScans() async {
+    final db  = await database;
     final res = await db.query('Scans');
 
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
@@ -110,10 +110,9 @@ class DBProvider {
 
   // Para leer por tipo
   Future<List<ScanModel>> getScansPorTipo(String tipo) async {
-    final db = await database;
+    final db  = await database;
     final res = await db.rawQuery('''
-
-      SELECT * FROM scans WHERE tipo = $tipo    
+      SELECT * FROM Scans WHERE tipo = '$tipo'    
     ''');
 
     return res.isNotEmpty ? res.map((s) => ScanModel.fromJson(s)).toList() : [];
@@ -121,7 +120,7 @@ class DBProvider {
 
   // Para actualizar raw
   Future<int> updateScan(ScanModel nuevoScan) async {
-    final db = await database;
+    final db  = await database;
     final res = await db.update('Scans', nuevoScan.toJson(),
         where: 'id = ?', whereArgs: [nuevoScan.id]);
     return res;
@@ -129,7 +128,7 @@ class DBProvider {
 
   // Para borrar un raw
   Future<int> deleteScan(int id) async {
-    final db = await database;
+    final db  = await database;
     final res = await db.delete('Scans', where: 'id = ?', whereArgs: [id]);
     return res;
   }
@@ -137,8 +136,7 @@ class DBProvider {
   // para borrar toda la BD
   Future<int> deleteAllScans() async {
     final db = await database;
-
-
+    
     // final res = await db.delete('Scans');// forma corta
     //Forma larga
     final res = await db.rawDelete('''
