@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:preferencias_usuario/widgets/menu_widget.dart';
 
 
 
@@ -13,8 +14,11 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Preferencias de usuario'),
       ),
-    
+      drawer: MenuWidget(), // para mostrar un menu lateral
+
+      
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text('Color secundario'),
           Divider(),
@@ -26,7 +30,9 @@ class HomePage extends StatelessWidget {
           
         ]
       ),
-
     );
   }
+
+
 }
+
