@@ -4,7 +4,9 @@
 
 import 'dart:convert';
 
-import 'package:productos_app/models/models.dart';
+
+
+// Aca se recibe el Json y se convierte a Map o al contrario
 
 class Product {
     Product({
@@ -27,24 +29,25 @@ class Product {
 
     factory Product.fromMap(Map<String, dynamic> json) => Product(
         available: json["available"],
-        name: json["name"],
-        picture: json["picture"],
-        price: json["price"].toDouble(),
+        name     : json["name"],
+        picture  : json["picture"],
+        price    : json["price"].toDouble(),
     );
 
     Map<String, dynamic> toMap() => {
         "available": available,
-        "name": name,
-        "picture": picture,
-        "price": price,
+        "name"     : name,
+        "picture"  : picture,
+        "price"    : price,
     };
 
+    // Se creo una copia del mapa de productos "Product" (del modelo)
     Product copy() => Product(
       available: this.available,
-      name: this.name,
-      picture: this.picture,
-      price: this.price,
-      id: this.id,
+      name     : this.name,
+      picture  : this.picture,
+      price    : this.price,
+      id       : this.id,
     );
 
 }

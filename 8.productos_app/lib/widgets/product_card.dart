@@ -3,6 +3,9 @@ import 'package:productos_app/models/models.dart';
 
 class ProductCard extends StatelessWidget {
 
+
+  // Para terminar de construir la tarjeta: se adiciona el contenido de la
+  // imagen  
   final Product product;
 
   const ProductCard({
@@ -50,7 +53,7 @@ class ProductCard extends StatelessWidget {
             ),
 
 
-            // 6. Disponiblidad del producto en el borde superior izquierdo
+            // 6. Disponiblidad del producto en el borde   superior izquierdo
             if( !product.available )
               Positioned(
                 top: 0,
@@ -106,6 +109,8 @@ class _NotAvailable extends StatelessWidget {
 // creando el detalle en el borde superior derecho (paso 5)
 class _PriceTag extends StatelessWidget {
 
+
+  // Para obtener el precio del producto y mostrarlo en pantalla
   final double price;
 
   const _PriceTag( this.price );
@@ -134,6 +139,7 @@ class _PriceTag extends StatelessWidget {
 // Se definen los detalles de la tarjeta (paso 4)
 class _ProductDetails extends StatelessWidget {
 
+  // Para obtener el nombre del producto y mostrarlo en pantalla
   final String title;
   final String subTitle;
 
@@ -188,6 +194,7 @@ class _ProductDetails extends StatelessWidget {
 // Widget donde se definio la imagen que mostrara la tarjeta (paso 2)
 class _BackgroundImage extends StatelessWidget {
  
+  // Aca se esta definiendo mostrar la imagen por URL y no por producto
   final String? url;
 
   const _BackgroundImage( this.url );
@@ -200,6 +207,9 @@ class _BackgroundImage extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 400,
+        // Aca se establece una condicion para que muestre una imagen predeterminada
+        // si el producto llamado desde el servidor no tiene imagen, de lo 
+        // contrario muestra la imagen
         child: url == null
           ? Image(
               image: AssetImage('assets/no-image.png'),

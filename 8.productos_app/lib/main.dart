@@ -5,12 +5,15 @@ import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/services.dart';
 
  
+ // Se uso el "AppState" en lugar de "MyApp" para correr la aplicacion
 void main() => runApp(AppState());
+
 
 class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // el "MultiProvider" se usa cuando se van a crear varios Providers
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: ( _ ) => ProductsService() )

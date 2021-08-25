@@ -2,8 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+// Aca se define la estructura de la pagina que se abre cuando se da tap
+// en cualquier imagen
+
 class ProductImage extends StatelessWidget {
 
+  // Para que se muestre la imagen del producto llamada del servidor en la
+  // screen "ProductScreen" 
   final String? url;
 
   const ProductImage({
@@ -20,9 +25,10 @@ class ProductImage extends StatelessWidget {
         decoration: _buildBoxDecoration(),
         width: double.infinity,
         height: 450,
-        child: Opacity(
+        child: Opacity( // Ayuda a que los botones blancos (regresar y camara)
+                  // se observen cuando la imagen tiene fondo blanco 
           opacity: 0.9,
-          child: ClipRRect(
+          child: ClipRRect( // Para hacer borde redondeado a widgets internos
             borderRadius: BorderRadius.only( topLeft: Radius.circular( 45 ), topRight: Radius.circular(45) ),
             child: getImage(url)
           ),
@@ -36,7 +42,7 @@ class ProductImage extends StatelessWidget {
     borderRadius: BorderRadius.only( topLeft: Radius.circular( 45 ), topRight: Radius.circular(45) ),
     boxShadow: [
       BoxShadow(
-        color: Colors.black.withOpacity(0.05),
+        color: Colors.black.withOpacity(0.05),//".withOpacity" para definir la opacidad
         blurRadius: 10,
         offset: Offset(0,5)
       )
@@ -46,6 +52,8 @@ class ProductImage extends StatelessWidget {
 
   Widget getImage( String? picture ) {
 
+    // condicionamiento para que muestre una imagen predifinida si el servidor
+    // no envia una imagen 
     if ( picture == null ) 
       return Image(
           image: AssetImage('assets/no-image.png'),
