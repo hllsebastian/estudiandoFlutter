@@ -53,13 +53,14 @@ class ProductImage extends StatelessWidget {
   Widget getImage( String? picture ) {
 
     // condicionamiento para que muestre una imagen predifinida si el servidor
-    // no envia una imagen 
+    // no envia una imagen
     if ( picture == null ) 
       return Image(
           image: AssetImage('assets/no-image.png'),
           fit: BoxFit.cover,
         );
 
+    // Condicion para cargar la imagen con URL  
     if ( picture.startsWith('http') ) 
         return FadeInImage(
           image: NetworkImage( this.url! ),
@@ -67,7 +68,7 @@ class ProductImage extends StatelessWidget {
           fit: BoxFit.cover,
         );
 
-
+    // Si no cumple las anteriories, se almacena la imagen tomada con la camara
     return Image.file(
       File( picture ),
       fit: BoxFit.cover,

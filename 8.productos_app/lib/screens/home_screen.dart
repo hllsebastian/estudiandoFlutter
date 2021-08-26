@@ -50,15 +50,21 @@ class HomeScreen extends StatelessWidget {
           ),
         )
       ),
+
+      // Boton para crear nuevo producto
       floatingActionButton: FloatingActionButton(
         child: Icon( Icons.add ),
         onPressed: () {
 
+          // El "productsService.selectedProduct " siempre debe estar
+          // seleccionado 
           productsService.selectedProduct = new Product(
             available: false, 
             name: '', 
             price: 0
           );
+
+
           Navigator.pushNamed(context, 'product');
         },
       ),

@@ -81,17 +81,21 @@ class _ProductScreenBody extends StatelessWidget {
                 ),
 
                 // 3. Creacion boton para activar la camara
+                // para acceder a la camara y a la galeraia se importa el 
+                // package:image_picker, de la dependencia "image_picker" 
                 Positioned(
                   top  : 60,
                   right: 20,
                   child: IconButton(
                     onPressed: () async {
                       
+                      // Se crea la instancia de "ImagePicker"
                       final picker = new ImagePicker();
+
                       final PickedFile? pickedFile = await picker.getImage(
-                        // source: ImageSource.gallery,
+                        //source: ImageSource.gallery,
                         source      : ImageSource.camera,
-                        imageQuality: 100
+                        imageQuality: 100 // Para darle mas calidad a la fotografia
                       );
 
                       if( pickedFile == null ) {
@@ -99,6 +103,8 @@ class _ProductScreenBody extends StatelessWidget {
                         return;
                       }
 
+                      // "pickedFile.path" es el path fisico de la imagen
+                      // dentro del dispositivo 
                       productService.updateSelectedProductImage(pickedFile.path);
                       
 
@@ -123,16 +129,22 @@ class _ProductScreenBody extends StatelessWidget {
       // 5. Icono para guardar el producto 
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
+        // Condicion para establecer que boton debe aparecer mientras
+        // esta salvando y mientras no lo esta
         child: productService.isSaving 
           ? CircularProgressIndicator( color: Colors.white )
           : Icon( Icons.save_outlined ),
-        onPressed: productService.isSaving 
+        onPressed: 
+          // Si se esta guardando, no se puede hacer tap en el boton,
+          // cuando no esta salvando se puede hacer tap 
+          productService.isSaving 
           ? null
           : () async {
           
           // Si el formulario no es valido se hace return (no continua)
           if ( !productForm.isValidForm() ) return;
 
+          // Para cargar nueva imagen
           final String? imageUrl = await productService.uploadImage();
 
           if ( imageUrl != null ) productForm.product.picture = imageUrl;

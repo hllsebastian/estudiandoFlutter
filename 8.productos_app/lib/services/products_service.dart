@@ -22,6 +22,8 @@ class ProductsService extends ChangeNotifier {
   // cuando se de tap en el boton de guardar  
   late Product selectedProduct;
 
+  // Variable para almacenar la imagen de la camara en "saveOrCreateProduct"
+  // el "File" se importa de dart:io
   File? newPictureFile;
 
   // Propiedad que mostrara cuando se carga y cuando no
@@ -104,7 +106,7 @@ class ProductsService extends ChangeNotifier {
 
     //Actualizar el listado de productos por el ID
     // se busca el ID del producto (como mapa)  y luego de obtenido se puede
-    // actualizar. Asi todo el objeto cambia   
+    // actualizar. Asi todo el objeto cambia     
     final index = this.products.indexWhere((element) => element.id == product.id );
     this.products[index] = product;
 
@@ -112,12 +114,17 @@ class ProductsService extends ChangeNotifier {
 
   }
 
+  // Para crear nuevo producto desde la apliacion, con la creacion automatica
+  // del ID 
   Future<String> createProduct( Product product ) async {
 
-    final url = Uri.https( _baseUrl, 'products.json');
+
+    final url = Uri.https( _baseUrl, 'productos.json');
+    //"post" Para postear la informacion
     final resp = await http.post( url, body: product.toJson() );
     final decodedData = json.decode( resp.body );
 
+    // El decodeData va a asigar el ID al producto
     product.id = decodedData['name'];
 
     this.products.add(product);
@@ -127,16 +134,21 @@ class ProductsService extends ChangeNotifier {
 
   }
   
-
+  // Para seleccionar una imagen tomada con la camara, pero sin grabarla en
+  // la BD 
   void updateSelectedProductImage( String path ) {
 
+    
     this.selectedProduct.picture = path;
+
+    // Aca se esta recibiendo la imagen
     this.newPictureFile = File.fromUri( Uri(path: path) );
 
     notifyListeners();
 
   }
 
+  // Procedimiento para subir imagen
   Future<String?> uploadImage() async {
 
     if (  this.newPictureFile == null ) return null;
@@ -144,17 +156,24 @@ class ProductsService extends ChangeNotifier {
     this.isSaving = true;
     notifyListeners();
 
-    final url = Uri.parse('https://api.cloudinary.com/v1_1/dx0pryfzn/image/upload?upload_preset=autwc6pa');
+    //API que se creo en cloudinary para guardar las imagenes
+    final url = Uri.parse('https://api.cloudinary.com/v1_1/dzkenm5fh/image/upload?upload_preset=bfaap0df');
 
+    // Request que se le hace a cloudinary.. "POST" porque asi lo recibe cloudinary
     final imageUploadRequest = http.MultipartRequest('POST', url );
 
+    // Aca se le adjunta el archivo al request
     final file = await http.MultipartFile.fromPath('file', newPictureFile!.path );
 
+    // Ahora si se adjunta el archivo al request
     imageUploadRequest.files.add(file);
 
+    // Disparar la peticion
     final streamResponse = await imageUploadRequest.send();
+    // retorna "streamResponse"
     final resp = await http.Response.fromStream(streamResponse);
 
+    // Si algo salio mal, se imprime la respuesta de cloudinary
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
       print('algo salio mal');
       print( resp.body );
@@ -162,7 +181,9 @@ class ProductsService extends ChangeNotifier {
     }
 
     this.newPictureFile = null;
-
+    
+    // Si sale bien se pasa a Json.
+    // IMPORTANTE: el "secure_url" es donde se guarda la imagen 
     final decodedData = json.decode( resp.body );
     return decodedData['secure_url'];
 
