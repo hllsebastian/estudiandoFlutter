@@ -5,18 +5,18 @@ import 'package:productos_app/screens/screens.dart';
 import 'package:productos_app/services/services.dart';
 
  
- // Se uso el "AppState" en lugar de "MyApp" para correr la aplicacion
 void main() => runApp(AppState());
-
 
 class AppState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // el "MultiProvider" se usa cuando se van a crear varios Providers
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => ProductsService() )
+        // Para llamar instancias de estas clases en cualquier parte de la
+        // aplicacion 
+        ChangeNotifierProvider(create: ( _ ) => AuthService() ),
+        ChangeNotifierProvider(create: ( _ ) => ProductsService() ),
       ],
       child: MyApp(),
     );
@@ -25,21 +25,27 @@ class AppState extends StatelessWidget {
 
 
 
-
+ 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Productos App',
-      initialRoute: 'home',
+      initialRoute: 'login',
       routes: {
-        'login'   : ( _ ) => LoginScreen(),
+        
+        'checking': ( _ ) => CheckAuthScreen(),
+
         'home'    : ( _ ) => HomeScreen(),
         'product' : ( _ ) => ProductScreen(),
-      },
 
-      // Para darle una apariencia global a los "appBar "
+        'login'   : ( _ ) => LoginScreen(),
+        'register': ( _ ) => RegisterScreen(),
+      },
+      // "NotificationsService.messengerKey" para que MaterialApp, tenga
+      // acceso a los metodos y propiedades estaticas de  "NotificationsService"
+      scaffoldMessengerKey: NotificationsService.messengerKey,
       theme: ThemeData.light().copyWith(
         scaffoldBackgroundColor: Colors.grey[300],
         appBarTheme: AppBarTheme(
