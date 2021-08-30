@@ -36,8 +36,8 @@ class _Navegacion extends StatelessWidget {
       onTap: (i) => navegacionModel.paginaActual = i, // Aca se esta cambiando
                         // el valor de la pagina 
       items: [
-        BottomNavigationBarItem( icon: Icon( Icons.person_outline ), title: Text('Para ti') ),
-        BottomNavigationBarItem( icon: Icon( Icons.public ), title: Text('Encabezados') ),
+        BottomNavigationBarItem( icon: Icon( Icons.public ), label: 'Encabezados' ),
+        BottomNavigationBarItem( icon: Icon( Icons.person_outline ), label: 'Para ti' ),
       ]
     );
   }
