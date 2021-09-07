@@ -16,7 +16,8 @@ class AppState extends StatelessWidget {
     // el "MultiProvider" se usa cuando se van a crear varios Providers
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: ( _ ) => ProductsService() )
+        
+        ChangeNotifierProvider(create: ( _ ) => ProductsService()),
       ],
       child: MyApp(),
     );

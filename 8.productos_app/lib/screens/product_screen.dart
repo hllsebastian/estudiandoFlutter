@@ -32,12 +32,13 @@ class ProductScreen extends StatelessWidget {
 class _ProductScreenBody extends StatelessWidget {
 
 
+  final ProductsService productService;
+  
   const _ProductScreenBody({
     Key? key,
     required this.productService,
   }) : super(key: key);
 
-  final ProductsService productService;
 
   @override
   Widget build(BuildContext context) {

@@ -20,7 +20,7 @@ class ProductsService extends ChangeNotifier {
   // Cuando se selecciona un producto. Se debe tener PRESENTE que los 
   // cambios realizados solo deberian cambiar el listado de los productos
   // cuando se de tap en el boton de guardar  
-    late Product selectedProduct;
+  late Product selectedProduct;
 
   // Variable para almacenar la imagen de la camara en "saveOrCreateProduct"
   // el "File" se importa de dart:io
