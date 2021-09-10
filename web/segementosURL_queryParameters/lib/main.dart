@@ -9,7 +9,8 @@ import 'package:bases_web/ui/layout/main_layout_page.dart';
 void main() {
   setupLocator();
   Flurorouter.configureRoutes(); // Se llama a la generacion de las rutas
-                      // antes que empiezen a utilizarse 
+                      // antes de la construccion de la app o antes de que se
+                      // generen las rutas 
 
   runApp(MyApp());  
 }
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'RutasApp',
       initialRoute: '/',
       // onGenerateRoute: RouteGenerator.generateRoute,
-      onGenerateRoute: Flurorouter.router.generator,
+      onGenerateRoute: Flurorouter.router.generator, // -> Aca llamamos la 
+                                              // instancia de Flurorouter
       navigatorKey: locator<NavigationService>().navigatorKey,
       builder: ( _, child ) {
         return MainLayoutPage(

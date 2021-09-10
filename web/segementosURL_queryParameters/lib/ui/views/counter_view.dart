@@ -4,6 +4,8 @@ import 'package:bases_web/ui/shared/custom_flat_button.dart';
 
 class CounterView extends StatefulWidget {
 
+  // Se establece esta variable para poder dibujar en pantalla el argumento
+  // ingresado e la URL 
   final String base;
 
   const CounterView({
@@ -19,6 +21,8 @@ class _CounterViewState extends State<CounterView> {
   
   int counter = 10;
 
+  // Se usa para que lograr inicializarlo dentro de la clase, de lo contrario
+  // no dejaria. Ademas se maneje la condicin para convertir el string en int
   @override
   void initState() { 
     super.initState();

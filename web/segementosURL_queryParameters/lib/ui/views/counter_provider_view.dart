@@ -7,6 +7,7 @@ import 'package:bases_web/ui/shared/custom_flat_button.dart';
 
 class CounterProviderView extends StatelessWidget {
 
+  // Se define la variable base para almacenar el argumento
   final String base;
 
   const CounterProviderView({

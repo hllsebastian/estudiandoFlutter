@@ -55,6 +55,7 @@ class _TableDesktopMenu extends StatelessWidget {
             color: Colors.black,
           ),
 
+          // Se define este widget para manejar los query parameters
           SizedBox( width: 10 ),
           CustomFlatButton(
             text: 'Provider 200',

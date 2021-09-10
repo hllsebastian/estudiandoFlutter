@@ -4,6 +4,7 @@ class CounterProvider extends ChangeNotifier {
 
   int _counter = 15;
 
+  // Para cambiar el tipo de dato de la base si es necesario
   CounterProvider( String base ) {
     if ( int.tryParse(base) != null ) 
       this._counter = int.parse(base);
