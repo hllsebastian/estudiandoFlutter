@@ -11,6 +11,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // Permite asgignar una division a la pantalla en px
     final size = MediaQuery.of(context).size;
 
     return Container(
@@ -20,22 +21,25 @@ class Navbar extends StatelessWidget {
       child: Row(
         children: [
           
+          // Para el navbar responsive
           if ( size.width <= 700 )
             IconButton(
               icon: Icon( Icons.menu_outlined ), 
-              onPressed: () => SideMenuProvider.openMenu()
+              // Se llama el metodo para iniciar la animacion cuando la pantalla es 
+              // inferior a 700px
+              onPressed: () => SideMenuProvider.openMenu() 
             ),
           
           SizedBox( width: 5 ),
 
           // Search input
           if ( size.width > 390 ) 
-            ConstrainedBox(
+            ConstrainedBox( // Ayudara a definir un tamaño 
               constraints: BoxConstraints( maxWidth: 250 ),
               child: SearchText(),
             ),
 
-          Spacer(),
+          Spacer(), // Servira para expandir espacion entre un widgets
 
           NotificationsIndicator(),
           SizedBox( width: 10 ),

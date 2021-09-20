@@ -15,7 +15,10 @@ class IconsView extends StatelessWidget {
 
           SizedBox( height: 10 ),
 
-          Wrap(
+          Wrap( // Para que los widgets aparezcan uno al lado del otro y cuando
+                // no quepan continuaran en una nueva linea con: 
+                // "crossAxisAlignment: WrapCrossAlignment.start" y 
+                // direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.start,
             direction: Axis.horizontal,
             children: [

@@ -19,7 +19,7 @@ class Flurorouter {
   static String blankRoute = '/dashboard/blank';
 
 
-  static void configureRoutes() {
+  static void configureRoutes() { // Para usar los metodos de "FluroRouter"
     // Auth Routes
     router.define( rootRoute, handler: AdminHandlers.login, transitionType: TransitionType.none );
     router.define( loginRoute, handler: AdminHandlers.login, transitionType: TransitionType.none );

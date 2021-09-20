@@ -29,7 +29,7 @@ class WhiteCard extends StatelessWidget {
           
           if( title != null ) 
           ...[
-            FittedBox(
+            FittedBox( // Si hay poco espacion se ajustara el texto 
               fit: BoxFit.contain,
               child: Text(
                 title!,
@@ -40,7 +40,7 @@ class WhiteCard extends StatelessWidget {
               ),
             ),
 
-            Divider()
+            Divider() // linea divisoria
           ],
 
           child

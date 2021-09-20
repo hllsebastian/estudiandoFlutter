@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+
+// Icono de notificaciones
+
 class NotificationsIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class NotificationsIndicator extends StatelessWidget {
     );
   }
 
+  // Aca se definio el punto rojo que indica cuando hay notificaciones sin leer
   BoxDecoration buildBoxDecoration() => BoxDecoration(
     color: Colors.red,
     borderRadius: BorderRadius.circular(100)

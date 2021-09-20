@@ -17,6 +17,8 @@ class DashboardHandlers {
   static Handler dashboard = Handler(
     handlerFunc: ( context, params ) {
 
+      // Para dejar marcada la opcion del menu de la vista o pagina que se 
+      // este mostrando
       final authProvider = Provider.of<AuthProvider>(context!);
       Provider.of<SideMenuProvider>(context, listen: false)
         .setCurrentPageUrl( Flurorouter.dashboardRoute );

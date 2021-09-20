@@ -23,14 +23,17 @@ class Sidebar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    // Se define la instancis para acceder al "SideMenuProvider" y poder marcar
+    // la opcion del menu con relacion a la pagina que esta mostrando la vista
     final sideMenuProvider = Provider.of<SideMenuProvider>(context);
 
     return Container(
       width: 200,
       height: double.infinity,
       decoration: buildBoxDecoration(),
-      child: ListView(
-        physics: ClampingScrollPhysics(),
+      child: ListView(   // Manejado con ListView para que permita el scroll en 
+                        // de tener muchas opciones
+        physics: ClampingScrollPhysics(), // Para que no rebote con el scroll
         children: [
 
           Logo(),
@@ -42,7 +45,10 @@ class Sidebar extends StatelessWidget {
           MenuItem(
             text: 'Dashboard',
             icon: Icons.compass_calibration_outlined,
+            // Para hacer la navegacion a la vista "Dashboard" cuando se da click
+            // en la opcion del sidebar   
             onPressed: () => navigateTo( Flurorouter.dashboardRoute ),
+            // Indicando si la vista actual es igual a la ruta
             isActive: sideMenuProvider.currentPage == Flurorouter.dashboardRoute,
           ),
 
@@ -66,6 +72,7 @@ class Sidebar extends StatelessWidget {
 
           MenuItem( text: 'Marketing', icon: Icons.mark_email_read_outlined, onPressed: (){}),
           MenuItem( text: 'Campaign', icon: Icons.note_add_outlined, onPressed: (){}),
+          
           MenuItem( 
             text: 'Black', 
             icon: Icons.post_add_outlined, 
@@ -81,14 +88,14 @@ class Sidebar extends StatelessWidget {
     );
   }
 
-  BoxDecoration buildBoxDecoration() => BoxDecoration(
+  BoxDecoration buildBoxDecoration() => BoxDecoration( // Para dar efecto degradado al color
     gradient: LinearGradient(
       colors: [
-        Color( 0xff092044 ),
-        Color( 0xff092042 ),
+        Color( 0xff092044 ), // Primer color
+        Color( 0xff092042 ), // Segundo color
       ]
     ),
-    boxShadow: [
+    boxShadow: [ // Para dar un efecto de sombra
       BoxShadow(
         color: Colors.black26,
         blurRadius: 10

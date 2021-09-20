@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class TextSeparator extends StatelessWidget {
 
-  final String text;
+  final String text;  // El argumento que recibira  
 
   const TextSeparator({
     Key? key, 
@@ -15,7 +15,7 @@ class TextSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric( horizontal: 20 ),
-      margin: EdgeInsets.only( bottom: 5 ),
+      margin: EdgeInsets.only( bottom: 5 ), // Para hacer una separacion abajo
       child: Text( 
         text,
         style: GoogleFonts.roboto(

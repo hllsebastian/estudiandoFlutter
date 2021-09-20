@@ -28,12 +28,13 @@ class AppState extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           lazy: false,
-          create: ( _ ) => AuthProvider()
+          create: ( _ ) => AuthProvider() // Para la autenticacion
         ),
 
-        ChangeNotifierProvider(
+        ChangeNotifierProvider( 
           lazy: false,
-          create: ( _ ) => SideMenuProvider()
+          create: ( _ ) => SideMenuProvider() // para mostrar marcada la opcion del menu, de la
+                                              // en la que se encuentre 
         )
 
       ],
