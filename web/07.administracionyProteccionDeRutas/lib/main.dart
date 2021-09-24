@@ -20,7 +20,8 @@ import 'package:admin_dashboard/ui/layouts/auth/auth_layout.dart';
 void main() async {
 
   await LocalStorage.configurePrefs();
-  CafeApi.configureDio();
+  CafeApi.configureDio();  // Cuando se ejecuta la aplicacion, para tener
+                          // acceso al token 
   
   Flurorouter.configureRoutes();
   runApp(AppState());
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       onGenerateRoute: Flurorouter.router.generator,
       navigatorKey: NavigationService.navigatorKey,
-      scaffoldMessengerKey: NotificationsService.messengerKey,
+      scaffoldMessengerKey: NotificationsService.messengerKey, // Para usar el snackbar
       builder: ( _ , child ){
         
         final authProvider = Provider.of<AuthProvider>(context);

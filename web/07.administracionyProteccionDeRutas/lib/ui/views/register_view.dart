@@ -91,11 +91,12 @@ class RegisterView extends StatelessWidget {
                     CustomOutlinedButton(
                       onPressed: () {
 
+                        
                         final validForm = registerFormProvider.validateForm();
                         if ( !validForm ) return;
 
                         final authProvider = Provider.of<AuthProvider>(context, listen: false);
-                        authProvider.register(
+                        authProvider.register(        // Aca se llamo el registro de usuaurio
                           registerFormProvider.email, 
                           registerFormProvider.password, 
                           registerFormProvider.name

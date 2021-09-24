@@ -10,6 +10,7 @@ import 'package:admin_dashboard/services/local_storage.dart';
 import 'package:admin_dashboard/services/navigation_service.dart';
 import 'package:admin_dashboard/services/notifications_service.dart';
 
+
 enum AuthStatus {
   checking,
   authenticated,
@@ -26,7 +27,7 @@ class AuthProvider extends ChangeNotifier {
     this.isAuthenticated();
   }
 
-
+  // Provider de autenticacion de usuario
   login( String email, String password ) {
 
     final data = {
@@ -47,16 +48,14 @@ class AuthProvider extends ChangeNotifier {
         CafeApi.configureDio();
 
         notifyListeners();
-
       }
-      
     ).catchError( (e){
       print('error en: $e');
       NotificationsService.showSnackbarError('Usuario / Password no válidos');
     });
-
   }
 
+  // Provider del registro o creacion de usuario; debe importarse APIcafe
   register( String email, String password, String name ) {
     
     final data = {
@@ -77,17 +76,11 @@ class AuthProvider extends ChangeNotifier {
 
         CafeApi.configureDio();
         notifyListeners();
-
-      }
-      
+      }   
     ).catchError( (e){
       print('error en: $e');
       NotificationsService.showSnackbarError('Usuario / Password no válidos');
     });
-    
-    
-    
-
   }
 
   Future<bool> isAuthenticated() async {
@@ -103,7 +96,7 @@ class AuthProvider extends ChangeNotifier {
     try {
       final resp = await CafeApi.httpGet('/auth');
       final authReponse = AuthResponse.fromMap(resp);
-      LocalStorage.prefs.setString('token', authReponse.token );
+      LocalStorage.prefs.setString('token', authReponse.token ); // Para mantener activa la sesion
       
       this.user = authReponse.usuario;
       authStatus = AuthStatus.authenticated;
@@ -116,7 +109,6 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       return false;
     }
-
   }
 
 

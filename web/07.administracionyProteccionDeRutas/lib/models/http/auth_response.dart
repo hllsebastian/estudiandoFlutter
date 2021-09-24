@@ -16,6 +16,8 @@ class AuthResponse {
 
     String toJson() => json.encode(toMap());
 
+
+    // Este es el metodo que ayudara a crear la nueva instancia del usuario
     factory AuthResponse.fromMap(Map<String, dynamic> json) => AuthResponse(
         usuario: Usuario.fromMap(json["usuario"]),
         token: json["token"],
