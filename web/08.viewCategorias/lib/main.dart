@@ -36,7 +36,8 @@ class AppState extends StatelessWidget {
 
         ChangeNotifierProvider(lazy: false, create: ( _ ) => SideMenuProvider() ),
 
-        ChangeNotifierProvider(create: ( _ ) => CategoriesProvider() ),
+        // Para obtener los datos de la API. "lazy" por defecto en true, para obtener los datos por demanda
+        ChangeNotifierProvider(create: ( _ ) => CategoriesProvider() ), 
 
       ],
       child: MyApp(),

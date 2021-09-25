@@ -5,6 +5,9 @@ import 'package:admin_dashboard/api/CafeApi.dart';
 import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/models/http/categories_response.dart';
 
+
+// Provider para obtener los datos de la API
+
 class CategoriesProvider extends ChangeNotifier {
 
   List<Categoria> categorias = [];

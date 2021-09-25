@@ -8,21 +8,24 @@ import 'package:admin_dashboard/models/category.dart';
 import 'package:admin_dashboard/ui/modals/category_modal.dart';
 
 
-
+// Aca se define el "source", parametro del "PaginatedDataTable" definido en la vista de
+// categoria  
 
 class CategoriesDTS extends DataTableSource {
 
-  final List<Categoria> categorias;
+  final List<Categoria> categorias; // Se define este parametro para tomar el listado
+                                    // generado del get en la api y mostrarlo en patanlla
   final BuildContext context;
 
   CategoriesDTS(this.categorias, this.context);
 
 
+  // "index" es cada una de las interacciones para el momento de graficar una fila
   @override
   DataRow getRow(int index) {
 
-    final categoria = this.categorias[index];
-    
+    final categoria = this.categorias[index]; // Con esta variable tenemos acceso a toda 
+                                              // categoria
     return DataRow.byIndex(
       index: index,
       cells: [
@@ -83,11 +86,14 @@ class CategoriesDTS extends DataTableSource {
     );
   }
 
+  // Para contar el numero exacto (false) o aproximado (true), del rowCount
   @override
   bool get isRowCountApproximate => false;
 
+  // Para contar cuantos elementos tiene el DataTable
+  // la cantidad se definio por el numero de categorias recibidas de la API
   @override
-  int get rowCount => categorias.length;
+  int get rowCount => categorias.length; 
 
   @override
 

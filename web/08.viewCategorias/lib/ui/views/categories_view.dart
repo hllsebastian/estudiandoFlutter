@@ -19,20 +19,21 @@ class CategoriesView extends StatefulWidget {
 
 class _CategoriesViewState extends State<CategoriesView> {
 
+  // Variable para ayudar a elegir la pagina de la tabla
   int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
 
+  // Para cargar los datos de la API
   @override
   void initState() {
     super.initState();
-
     Provider.of<CategoriesProvider>(context, listen: false).getCategories();
-
   }
 
 
   @override
   Widget build(BuildContext context) {
 
+    // Para que los datos que se mapearon y se pasaron a string, de la api, se muestren en el "DataColumn"
     final categorias = Provider.of<CategoriesProvider>(context).categorias;
 
     return Container(
@@ -44,22 +45,29 @@ class _CategoriesViewState extends State<CategoriesView> {
 
           SizedBox( height: 10 ),
 
-          PaginatedDataTable(
+          PaginatedDataTable( // Este widget tiene como requiered las propiedades
+                              // "columns" y "source"
               columns: [
                 DataColumn(label: Text('ID')),
                 DataColumn(label: Text('Categoría')),
                 DataColumn(label: Text('Creado por')),
                 DataColumn(label: Text('Acciones')),
               ], 
-              source: CategoriesDTS( categorias, context ),
+              source: CategoriesDTS( categorias, context ), 
+
+              // Titulo para el PaginatedDataTable
               header: Text('Categorías disponibles', maxLines: 2 ),
+             
+              // Para enumerar las tablas y que el usuario elija sobre cual
+              // numero de pagina estar 
               onRowsPerPageChanged: ( value ) {
                 setState(() {
                   _rowsPerPage = value ?? 10;
                 });
               },
-              rowsPerPage: _rowsPerPage,
-              actions: [
+              rowsPerPage: _rowsPerPage, // Indica la cantidad de filas por pagina
+
+              actions: [ // Permite crear un iconbuttoms en la parte superior final de la pantalla
                 CustomIconButton(
                   onPressed: () {
                     showModalBottomSheet(
