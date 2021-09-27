@@ -85,7 +85,9 @@ class LoginView extends StatelessWidget {
                   LinkText(
                     text: 'Nueva cuenta',
                     onPressed: () {
-                      Navigator.pushNamed( context, Flurorouter.registerRoute );
+                      // "pushReplacementNamed" Para que use destruya la pantalla y evite que se este redibujando
+                      // continuamente
+                      Navigator.pushReplacementNamed( context, Flurorouter.registerRoute );
                     },
                   )
 

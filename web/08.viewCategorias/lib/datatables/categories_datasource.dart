@@ -15,7 +15,9 @@ class CategoriesDTS extends DataTableSource {
 
   final List<Categoria> categorias; // Se define este parametro para tomar el listado
                                     // generado del get en la api y mostrarlo en patanlla
-  final BuildContext context;
+ 
+  final BuildContext context; // Se define acceso al "context", para poder definir un mensaje
+                              // de confirmacion cuando se quiere eliminar una fila 
 
   CategoriesDTS(this.categorias, this.context);
 
@@ -37,7 +39,7 @@ class CategoriesDTS extends DataTableSource {
             children: [
               IconButton(
                 icon: Icon( Icons.edit_outlined ),
-                onPressed: () {
+                onPressed: () {          // Aca se llamo a la actualizacion de la categoria
                   showModalBottomSheet(
                       backgroundColor: Colors.transparent,
                       context: context, 
@@ -49,19 +51,20 @@ class CategoriesDTS extends DataTableSource {
                 icon: Icon( Icons.delete_outline, color: Colors.red.withOpacity(0.8)),
                 onPressed: () {
                   
-                  final dialog = AlertDialog(
+                  final dialog = AlertDialog( // Mensaje de alerta
                     title: Text('¿Está seguro de borrarlo?'),
                     content: Text('¿Borrar definitivamente ${ categoria.nombre }?'),
                     actions: [
                       TextButton(
                         child: Text('No'),
-                        onPressed: () {
+                        onPressed: () {  // Si elige no borrar, cierra dialogo
                           Navigator.of(context).pop();
                         },
                       ),
                       TextButton(
                         child: Text('Si, borrar'),
-                        onPressed: () async {
+                        onPressed: () async { // Si elige borrar se ejecuta el delete y luego se
+                                              // se cierra el dialogo 
                           await Provider.of<CategoriesProvider>(context, listen: false)
                             .deleteCategory(categoria.id);
 
@@ -71,7 +74,7 @@ class CategoriesDTS extends DataTableSource {
                     ],
                   );
 
-                  showDialog(
+                  showDialog( // Con este propiedad se mostrara el Alertdialog
                     context: context, 
                     builder: ( _ ) => dialog 
                   );

@@ -37,6 +37,8 @@ class _CategoriesViewState extends State<CategoriesView> {
     final categorias = Provider.of<CategoriesProvider>(context).categorias;
 
     return Container(
+      // En todas las view se definio esta propiedad para que cuando el ShowDialog se abra, la
+      // sombra en el fondo de pantalla se muestre completa 
       padding: EdgeInsets.symmetric( horizontal: 20, vertical: 10 ),
       child: ListView(
         physics: ClampingScrollPhysics(),
@@ -53,6 +55,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                 DataColumn(label: Text('Creado por')),
                 DataColumn(label: Text('Acciones')),
               ], 
+              // En el "source" se llamo el  
               source: CategoriesDTS( categorias, context ), 
 
               // Titulo para el PaginatedDataTable
@@ -71,9 +74,9 @@ class _CategoriesViewState extends State<CategoriesView> {
                 CustomIconButton(
                   onPressed: () {
                     showModalBottomSheet(
-                      backgroundColor: Colors.transparent,
+                      backgroundColor: Colors.transparent, // Para que los bordes redondeados no se vean sobre un borde rectangular
                       context: context, 
-                      builder: ( _ ) => CategoryModal( categoria: null )
+                      builder: ( _ ) => CategoryModal( categoria: null ) // Boton para crear y actualizar la categoria
                     );
                   }, 
                   text: 'Crear', 

@@ -11,6 +11,7 @@ import 'package:admin_dashboard/ui/buttons/custom_outlined_button.dart';
 import 'package:admin_dashboard/ui/inputs/custom_inputs.dart';
 import 'package:admin_dashboard/ui/labels/custom_labels.dart';
 
+// Para crear y actualizar una categoria
 
 class CategoryModal extends StatefulWidget {
 
@@ -85,6 +86,8 @@ class _CategoryModalState extends State<CategoryModal> {
             child: CustomOutlinedButton(
               onPressed: () async{
                 
+                // Aca se crea la condicion para crear  la nueva categoria si el campo
+                // id es nulo, si no se actualizara
                 try {
                   if( id == null ) {
                     // Crear
@@ -103,10 +106,6 @@ class _CategoryModalState extends State<CategoryModal> {
                   Navigator.of(context).pop();
                   NotificationsService.showSnackbarError('No se pudo guardar la categoría');
                 }
-                
-          
-                
-
               },
               text: 'Guardar',
               color: Colors.white,

@@ -32,6 +32,7 @@ class CafeApi {
     }
   }
 
+  // Para crear nuevo registro
   static Future post( String path, Map<String, dynamic> data ) async {
 
       final formData = FormData.fromMap(data);
@@ -47,7 +48,7 @@ class CafeApi {
       }
     }
 
-
+    // Para hacer actualizacion
     static Future put( String path, Map<String, dynamic> data ) async {
 
       final formData = FormData.fromMap(data);
@@ -63,7 +64,7 @@ class CafeApi {
       }
     }
 
-
+    // Para borrar registro
     static Future delete( String path, Map<String, dynamic> data ) async {
 
       final formData = FormData.fromMap(data);

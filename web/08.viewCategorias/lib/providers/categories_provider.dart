@@ -24,6 +24,7 @@ class CategoriesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Creacion de nueo categoria
   Future newCategory( String name ) async {
 
     final data = {
@@ -41,7 +42,6 @@ class CategoriesProvider extends ChangeNotifier {
     } catch (e) {
       throw 'Error al crear categoria';
     }
-
   }
 
   Future updateCategory( String id, String name ) async {
@@ -70,6 +70,7 @@ class CategoriesProvider extends ChangeNotifier {
 
   }
 
+  // Definiendo el borrado de una categoria
   Future deleteCategory( String id ) async {
 
     try {

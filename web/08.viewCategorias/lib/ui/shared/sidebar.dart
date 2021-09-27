@@ -17,7 +17,9 @@ class Sidebar extends StatelessWidget {
  
 
   void navigateTo( String routeName ) {
-    NavigationService.navigateTo( routeName );
+    // "replaceTo" cuando el usuario no regresara a la pantalla anterior, si regresa
+    // es conveniente el "navigateTo"
+    NavigationService.replaceTo(routeName );
     SideMenuProvider.closeMenu();
   }
 
